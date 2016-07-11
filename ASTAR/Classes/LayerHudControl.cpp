@@ -33,7 +33,7 @@ bool LayerHudControl::init(){
     <string Key="btnWalk" Value="mode:walk" />
 	</kv>
 	*/
-	// ¶ÁÈë×Ö·û´®±í
+	// è¯»å…¥å­—ç¬¦ä¸²è¡¨
 	tinyxml2::XMLDocument doc;
 	doc.LoadFile( "config/strings.xml" ) ; 
 	auto pRoot=doc.RootElement();
@@ -41,10 +41,10 @@ bool LayerHudControl::init(){
 	{
 		m_StringList[pEle->Attribute("Key")]=pEle->Attribute("Value");
 	}
-	// Ä¬ÈÏÊÇÍ¼±à¼­Ä£Ê½
+	// é»˜è®¤æ˜¯å›¾ç¼–è¾‘æ¨¡å¼
 	m_pTxtInfo->setString(m_StringList["btnEditGraph"]);
 
-	// ¾²Ì¬º¯Êý¶ÔÏó¡£ÕâÑù¶ÔÏó²Å²»»á±»Ïú»Ù¡£
+	// é™æ€å‡½æ•°å¯¹è±¡ã€‚è¿™æ ·å¯¹è±¡æ‰ä¸ä¼šè¢«é”€æ¯ã€‚
 	static auto fnSetInfo=[&](Widget* pWidget){
 		string name=pWidget->getName();
 		auto it=m_StringList.find(name);
@@ -56,7 +56,7 @@ bool LayerHudControl::init(){
 	ui::Button* p_btn;
 	function<void(Ref*,Widget::TouchEventType)> fn;
 
-	// ÍÏÒ·°´Å¥
+	// æ‹–æ›³æŒ‰é’®
 	p_btn=(Button*)ui::Helper::seekWidgetByName(p_ui , "btnDrag");
 	fn=[&](Ref* pSender,Widget::TouchEventType type){
 		if(type==Widget::TouchEventType::ENDED){
@@ -68,7 +68,7 @@ bool LayerHudControl::init(){
 	p_btn->addTouchEventListener(fn);
 
 
-	// Í¼±à¼­°´Å¥
+	// å›¾ç¼–è¾‘æŒ‰é’®
 	p_btn = ( Button* )Helper::seekWidgetByName( p_ui , "btnEditGraph" ) ;
 	fn = [ &]( Ref* pSender , Widget::TouchEventType e )
 	{
@@ -81,7 +81,7 @@ bool LayerHudControl::init(){
 	p_btn->addTouchEventListener( fn ) ;
 
 
-	//ÏÔÊ¾ Òþ²ØÍ¼=================================================================
+	//æ˜¾ç¤º éšè—å›¾=================================================================
 	p_btn = ( Button* ) Helper::seekWidgetByName( p_ui , "btnShowHideGraph" ) ;
 	fn = [ &]( Ref* , Widget::TouchEventType e )
 	{
@@ -99,7 +99,7 @@ bool LayerHudControl::init(){
 	p_btn->addTouchEventListener( fn ) ;
 
 
-	// ·ÅÖÃÈËÎï
+	// æ”¾ç½®äººç‰©
 	p_btn = ( Button* ) Helper::seekWidgetByName( p_ui , "btnPositionRole" ) ;
 	fn = [ &]( Ref* pSender , Widget::TouchEventType e )
 	{
@@ -112,7 +112,7 @@ bool LayerHudControl::init(){
 	p_btn->addTouchEventListener( fn ) ;
 
 
-	// ÐÐ×ß
+	// è¡Œèµ°
 	p_btn = ( Button* ) Helper::seekWidgetByName( p_ui , "btnWalk" ) ;
 	fn = [ &]( Ref* pSender , Widget::TouchEventType e )
 	{

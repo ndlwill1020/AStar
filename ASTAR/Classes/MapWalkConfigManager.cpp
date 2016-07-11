@@ -9,9 +9,9 @@ void MapWalkConfigManager::load(const string& ConfigFileName,LayerMapWalk* p_Lay
 	unordered_map<string,MapWalkVertex*> m_MwvList;//MapVertexs
 
 	auto pElemRoot = doc.RootElement();
-	// ¶ÁÈ¡¶¥µãµÄĞÅÏ¢¡£´´½¨³öÏàÓ¦µÄ¶¥µãÔÚ½çÃæÉÏÏÔÊ¾
+	// è¯»å–é¡¶ç‚¹çš„ä¿¡æ¯ã€‚åˆ›å»ºå‡ºç›¸åº”çš„é¡¶ç‚¹åœ¨ç•Œé¢ä¸Šæ˜¾ç¤º
 	auto pElemVertexes = pElemRoot->FirstChildElement();
-	for (auto pElem = pElemVertexes->FirstChildElement();pElem != nullptr;pElem = pElem->NextSiblingElement())//NextSiblingElement ÏÂ¸öÍ¬¼¶ÔªËØ
+	for (auto pElem = pElemVertexes->FirstChildElement();pElem != nullptr;pElem = pElem->NextSiblingElement())//NextSiblingElement ä¸‹ä¸ªåŒçº§å…ƒç´ 
 	{
 		string strId = pElem->Attribute("Id");
 		float x = atof( pElem->Attribute( "x" ) ) ; 
@@ -24,7 +24,7 @@ void MapWalkConfigManager::load(const string& ConfigFileName,LayerMapWalk* p_Lay
 		m_MwvList[ strId ] = pMwv ; 
 	}
 
-	// ¶ÁÈ¡±ßµÄĞÅÏ¢¡£´´½¨³öÏàÓ¦µÄ±ß¡£
+	// è¯»å–è¾¹çš„ä¿¡æ¯ã€‚åˆ›å»ºå‡ºç›¸åº”çš„è¾¹ã€‚
 	auto pElemEdge = pElemRoot->FirstChildElement( "Edges" ) ;
 	for ( auto pElem = pElemEdge->FirstChildElement( ) ; pElem != 0 ; pElem = pElem->NextSiblingElement( ) )
 	{
@@ -46,11 +46,11 @@ void MapWalkConfigManager::save(const string& ConfigFileName,LayerMapWalk* p_Lay
 	auto pElemGvRoot = doc.NewElement( "Vertexes" ) ;
 	pElemGraph->InsertEndChild( pElemGvRoot ) ;
 
-	// ±£´æ¶¥µãĞÅÏ¢
+	// ä¿å­˜é¡¶ç‚¹ä¿¡æ¯
 	for ( size_t i = 0 ; i < p_LayerMapWalk->m_MapWalkVertexes.size( ) ; ++i )
 	{
 
-		// m_MapWalkVertexes  µØÍ¼ĞĞ×ßµÄ½ÚµãÁĞ±í
+		// m_MapWalkVertexes  åœ°å›¾è¡Œèµ°çš„èŠ‚ç‚¹åˆ—è¡¨
 		auto pMwv = p_LayerMapWalk->m_MapWalkVertexes[ i ] ;//MapVertex
 		auto pElemGv = doc.NewElement( "Vertex" ) ;
 
@@ -65,20 +65,20 @@ void MapWalkConfigManager::save(const string& ConfigFileName,LayerMapWalk* p_Lay
 
 	auto pElemEdgeRoot = doc.NewElement( "Edges" ) ;
 	pElemGraph->InsertEndChild( pElemEdgeRoot ) ;
-	// ±£´æ±ßµÄĞÅÏ¢
+	// ä¿å­˜è¾¹çš„ä¿¡æ¯
 	for ( size_t i = 0 ; i < p_LayerMapWalk->m_MapWalkVertexes.size( ) ; ++i )
 	{
 		auto pMwvStart = p_LayerMapWalk->m_MapWalkVertexes[ i ] ;
 
-		auto pVS = pMwvStart->GetGraphVertex( ) ; //µÃµ½Ïà¶ÔÓ¦µÄGraphVertex
-		// ±éÀúËùÓĞ³ö±ß
-		const auto& Eo = pVS->GetEdgesOut( ) ;//µÃµ½³ö±ß¼¯ºÏ`µÃµ½ÒÔpVS×÷Îª¿ªÊ¼µãµÄÏß¶Î 
+		auto pVS = pMwvStart->GetGraphVertex( ) ; //å¾—åˆ°ç›¸å¯¹åº”çš„GraphVertex
+		// éå†æ‰€æœ‰å‡ºè¾¹
+		const auto& Eo = pVS->GetEdgesOut( ) ;//å¾—åˆ°å‡ºè¾¹é›†åˆ`å¾—åˆ°ä»¥pVSä½œä¸ºå¼€å§‹ç‚¹çš„çº¿æ®µ 
 		for ( auto& it : Eo )
 		{
 			auto pElemEdge = doc.NewElement( "Edge" ) ;
 
 			auto pEdge = it.second ; 
-			auto pVE = pEdge->GetEndVertex( ) ;//µÃµ½½áÊøµã
+			auto pVE = pEdge->GetEndVertex( ) ;//å¾—åˆ°ç»“æŸç‚¹
 
 			pElemEdge->SetAttribute( "StartVertexId" , pVS->GetId( ).c_str() ) ; 
 			pElemEdge->SetAttribute( "EndVertexId" , pVE->GetId( ).c_str() ) ;

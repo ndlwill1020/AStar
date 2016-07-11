@@ -2,7 +2,7 @@
 #define _GRAPH_H_
 //#include <vector>
 #include <unordered_map>
-#include <string>//Á½¸östringÏà¼ÓĞèÒªÓÃÕâ¸ö
+#include <string>//ä¸¤ä¸ªstringç›¸åŠ éœ€è¦ç”¨è¿™ä¸ª
 using namespace std;
 
 class Vertex;
@@ -11,7 +11,7 @@ class Graph;
 
 //===========================================================
 /*
-	¶¥µã
+	é¡¶ç‚¹
 */
 class Vertex{
 	friend class Graph;
@@ -24,35 +24,35 @@ public:
 
 	~Vertex(){};
 
-	// ¸½¼ÓÊı¾İ
+	// é™„åŠ æ•°æ®
 	unordered_map< string , void*> UserData ;
 
 	//getter  setter
-	const unordered_map< string , Edge* >& GetEdgesOut( ) const { return m_EdgesOut ; }//µÃµ½³ö±ß¼¯ºÏ
+	const unordered_map< string , Edge* >& GetEdgesOut( ) const { return m_EdgesOut ; }//å¾—åˆ°å‡ºè¾¹é›†åˆ
 
-	const unordered_map< string , Edge* >& GetEdgesIn( ) const { return m_EdgesIn ; }//µÃµ½Èë±ß¼¯ºÏ
+	const unordered_map< string , Edge* >& GetEdgesIn( ) const { return m_EdgesIn ; }//å¾—åˆ°å…¥è¾¹é›†åˆ
 
-	const string& GetId( ) const { return m_strId ; }//µÃµ½id
+	const string& GetId( ) const { return m_strId ; }//å¾—åˆ°id
 
-	const string& GetText( ) const { return m_Text ; }//µÃµ½text
-	void SetText( const string& Text ) { m_Text = Text ; }//ÉèÖÃtext//set===================================
+	const string& GetText( ) const { return m_Text ; }//å¾—åˆ°text
+	void SetText( const string& Text ) { m_Text = Text ; }//è®¾ç½®text//set===================================
 
-	Graph * GetGraph( ) { return m_pGraph ; }//µÃµ½Í¼
+	Graph * GetGraph( ) { return m_pGraph ; }//å¾—åˆ°å›¾
 
-	// Ñ°Â·Ëã·¨ĞèÒªµÄÊı¾İ
+	// å¯»è·¯ç®—æ³•éœ€è¦çš„æ•°æ®
 	struct Pathfinding
 	{
-		// Â·¾¶´ú¼Û¹À¼Æ
+		// è·¯å¾„ä»£ä»·ä¼°è®¡
 		int Cost ; 
 
-		// ±êÊ¶·û
+		// æ ‡è¯†ç¬¦
 		int Flag ;
 
-		// Æô·¢Ê½º¯ÊıµÄ¼ÆËã³öÀ´µÄÖµ
-		//Æô·¢Ê½µÄ
+		// å¯å‘å¼å‡½æ•°çš„è®¡ç®—å‡ºæ¥çš„å€¼
+		//å¯å‘å¼çš„
 		int Heuristic ; 
 
-		// ¶¥µãµÄÇ°Çı¶¥µã¡£
+		// é¡¶ç‚¹çš„å‰é©±é¡¶ç‚¹ã€‚
 		Vertex * pParent ; 
 
 		Pathfinding( )
@@ -64,22 +64,22 @@ public:
 		}
 	} PathfindingData ;
 protected:
-	// ³ö±ß¼¯ºÏ
-	unordered_map< string , Edge* > m_EdgesOut ; //ÀïÃæ·ÅµÄÊÇÕâ¸öµãµÄ³ö±ßºÍ±ßµÄÁíÒ»¸öµãµÄstring ÀïÃæµÄedge¶¼°üº¬Õâ¸öµã ÇÒÕâ¸öµãÊÇstart
-	// Èë±ß¼¯ºÏ
+	// å‡ºè¾¹é›†åˆ
+	unordered_map< string , Edge* > m_EdgesOut ; //é‡Œé¢æ”¾çš„æ˜¯è¿™ä¸ªç‚¹çš„å‡ºè¾¹å’Œè¾¹çš„å¦ä¸€ä¸ªç‚¹çš„string é‡Œé¢çš„edgeéƒ½åŒ…å«è¿™ä¸ªç‚¹ ä¸”è¿™ä¸ªç‚¹æ˜¯start
+	// å…¥è¾¹é›†åˆ
 	unordered_map< string , Edge* > m_EdgesIn ;
-	// ½Úµã±íÊ¾µÄ×Ö·û´®
+	// èŠ‚ç‚¹è¡¨ç¤ºçš„å­—ç¬¦ä¸²
 	string m_Text ; 
-	// ½ÚµãµÄID
+	// èŠ‚ç‚¹çš„ID
 	string m_strId ;
-	// ÓÃÓÚÑ°Â·Ëã·¨¡£Â·¾¶´ú¼Û¹À¼Æ  
+	// ç”¨äºå¯»è·¯ç®—æ³•ã€‚è·¯å¾„ä»£ä»·ä¼°è®¡  
     //int m_Cost ;  
-	// ËùÊôµÄÍ¼
+	// æ‰€å±çš„å›¾
 	Graph * m_pGraph ; 
 };
 //===============================================================
 /*
-	ÓĞÏò±ß
+	æœ‰å‘è¾¹
 */
 class Edge{
 	friend class Graph;
@@ -90,7 +90,7 @@ public:
 		m_pEndVertex=nullptr;
 	};
 
-	//±ßµÄ¹¹Ôìº¯Êı ¾ÍÊÇÉèÖÃstart endµã
+	//è¾¹çš„æ„é€ å‡½æ•° å°±æ˜¯è®¾ç½®start endç‚¹
 	Edge(Vertex* pStartVertex , Vertex* pEndVertex , int Weight = 0 ){
 		m_Weight=Weight;
 		m_pStartVertex=pStartVertex;
@@ -99,29 +99,29 @@ public:
 
 
 	//getter  setter
-	int GetWeight( ) const { return m_Weight ; }//µÃµ½È¨Öµ
-	void SetWeight( int var ) { m_Weight = var ; }//ÉèÖÃÈ¨Öµ
+	int GetWeight( ) const { return m_Weight ; }//å¾—åˆ°æƒå€¼
+	void SetWeight( int var ) { m_Weight = var ; }//è®¾ç½®æƒå€¼
 
-	Vertex* GetStartVertex( ) const { return m_pStartVertex ; }//µÃµ½Æğµã
+	Vertex* GetStartVertex( ) const { return m_pStartVertex ; }//å¾—åˆ°èµ·ç‚¹
 
-	Vertex* GetEndVertex( ) const { return m_pEndVertex ; }//µÃµ½ÖÕµã
+	Vertex* GetEndVertex( ) const { return m_pEndVertex ; }//å¾—åˆ°ç»ˆç‚¹
 
 protected:
-	// ±ßµÄÈ¨Öµ
+	// è¾¹çš„æƒå€¼
 	int m_Weight  ;
 
-	//edgeÀïÃæ°üº¬ÁËstartºÍendµãµÄÊôĞÔ
-	// ÆğµãµÄ¶¥µã
+	//edgeé‡Œé¢åŒ…å«äº†startå’Œendç‚¹çš„å±æ€§
+	// èµ·ç‚¹çš„é¡¶ç‚¹
 	Vertex * m_pStartVertex ;
-	// ÖÕµãµÄ¶¥µã
+	// ç»ˆç‚¹çš„é¡¶ç‚¹
 	Vertex * m_pEndVertex ;
 };
 
 
 //============================================================
 /*
-	Í¼.
-	Í¼»á¸ºÔğÊÍ·Å¶¥µãºÍ±ßµÄÄÚ´æ
+	å›¾.
+	å›¾ä¼šè´Ÿè´£é‡Šæ”¾é¡¶ç‚¹å’Œè¾¹çš„å†…å­˜
 */
 
 class Graph{
@@ -129,29 +129,29 @@ public:
 	Graph();
 	~Graph();
 
-	const unordered_map< string , Vertex* >& GetVertexes( ) const { return m_Vertexes ; }//µÃµ½¶¥µã¼¯ºÏ
+	const unordered_map< string , Vertex* >& GetVertexes( ) const { return m_Vertexes ; }//å¾—åˆ°é¡¶ç‚¹é›†åˆ
 
-	// Ìí¼ÓÒ»¸ö¶¥µã
+	// æ·»åŠ ä¸€ä¸ªé¡¶ç‚¹
 	void AddVertex( Vertex* pV ) ;
 
-	// É¾³ıÒ»¸ö¶¥µã
+	// åˆ é™¤ä¸€ä¸ªé¡¶ç‚¹
 	void DeleleVertex( const string& VertexName ) ;
 
 
-	// Ìí¼ÓÒ»Ìõ±ß¡£·µ»Ø±ß¶ÔÏó
+	// æ·»åŠ ä¸€æ¡è¾¹ã€‚è¿”å›è¾¹å¯¹è±¡
 	Edge* AddEdge( const string& Vertex1Name , const string& Vertex2Name , int Weight = 0 ) ;
 
-	// É¾³ıÒ»Ìõ±ß
+	// åˆ é™¤ä¸€æ¡è¾¹
 	void DeleteEdge( const string& StartVertexName , const string& EndVertexName ) ;
 
 	//string getEdgeKey(Vertex* pV1,Vertex* pV2);
 protected:
 	
-	//k-v  string-¶ÔÏó
+	//k-v  string-å¯¹è±¡
 
-	// ¶¥µãµÄ¼¯ºÏ
+	// é¡¶ç‚¹çš„é›†åˆ
 	unordered_map< string , Vertex* > m_Vertexes ; 
-	// ±ßµÄ¼¯ºÏ¡£KeyµÄ¸ñÊ½¡°¶¥µã1name->¶¥µã2name"
+	// è¾¹çš„é›†åˆã€‚Keyçš„æ ¼å¼â€œé¡¶ç‚¹1name->é¡¶ç‚¹2name"
 	unordered_map< string , Edge* > m_Edges ;
 
 #define GetEdgeKey( pV1 , pV2 )(  pV1->m_strId + "->" + pV2->m_strId ) ;

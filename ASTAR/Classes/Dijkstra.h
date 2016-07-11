@@ -1,5 +1,5 @@
 /*
-ÕâÀï½éÉÜ²¢Êµ¼ù¾­µäµÄDijkstraËã·¨¡£DijkstraµÄÖ´ÐÐÀàËÆBFS£¨¹ã¶ÈÓÅÏÈËÑË÷£©£¬²¢ÇÒÊ¹ÓÃÁËÌ°ÐÄ²ßÂÔ¡£ºÜ¶à×î¶ÌÂ·¾¶Ëã·¨¶¼Ê¹ÓÃÁËÒ»ÖÖ½Ð×ö¡°ËÉ³Ú£¨Relax£©¡±²Ù×÷£¬DijkstraÒ²²»ÀýÍâ
+è¿™é‡Œä»‹ç»å¹¶å®žè·µç»å…¸çš„Dijkstraç®—æ³•ã€‚Dijkstraçš„æ‰§è¡Œç±»ä¼¼BFSï¼ˆå¹¿åº¦ä¼˜å…ˆæœç´¢ï¼‰ï¼Œå¹¶ä¸”ä½¿ç”¨äº†è´ªå¿ƒç­–ç•¥ã€‚å¾ˆå¤šæœ€çŸ­è·¯å¾„ç®—æ³•éƒ½ä½¿ç”¨äº†ä¸€ç§å«åšâ€œæ¾å¼›ï¼ˆRelaxï¼‰â€æ“ä½œï¼ŒDijkstraä¹Ÿä¸ä¾‹å¤–
 */
 
 #ifndef _DIJKSTRA_H_
@@ -19,10 +19,10 @@ public:
 		return m_result;
 	};
 private:
-	// »ñµÃ(ÌáÈ¡)×îÐ¡Â·¾¶¹ÀÖµµÄ¶¥µã
+	// èŽ·å¾—(æå–)æœ€å°è·¯å¾„ä¼°å€¼çš„é¡¶ç‚¹
 	inline Vertex* ExtractMin( vector< Vertex* >& Q ) ;
 
-	// ËÉ³Ú
+	// æ¾å¼›
 	inline void Relax( Vertex* v1 , Vertex* v2 , int Weight ) ;
 private:
 	Result m_result;

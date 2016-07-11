@@ -34,7 +34,7 @@ void Role::setState(State type){
 	switch (type)
 	{
 	case Role::State::None:
-		//Ö®Ç°µÄ×´Ì¬
+		//ä¹‹å‰çš„çŠ¶æ€
 		switch (m_state)
 		{
 		case Role::State::None:
@@ -76,11 +76,11 @@ void Role::setState(State type){
 }
 
 void Role::createActions(){
-	//top-bottom½ØÍ¼
-	auto pTex=TextureCache::getInstance()->addImage("kaito.png");//µÃµ½texture2d 
+	//top-bottomæˆªå›¾
+	auto pTex=TextureCache::getInstance()->addImage("kaito.png");//å¾—åˆ°texture2d 
 	float delayPerUnit=0.15;
 
-	//ÓÒ
+	//å³
 	auto pAnim=Animation::create();
 	pAnim->setDelayPerUnit(delayPerUnit);
 	for(int i=0;i<4;i++){
@@ -88,8 +88,8 @@ void Role::createActions(){
 		pAnim->addSpriteFrameWithTexture(pTex,rect);
 	}
 	m_pActWalkRight=RepeatForever::create(Animate::create(pAnim));
-	m_Actions.pushBack(m_pActWalkRight);//°ÑactionÌí¼Óµ½¼¯ºÏ
-	//×ó
+	m_Actions.pushBack(m_pActWalkRight);//æŠŠactionæ·»åŠ åˆ°é›†åˆ
+	//å·¦
 	pAnim=Animation::create();
 	pAnim->setDelayPerUnit(delayPerUnit);
 	for(int i=0;i<4;i++){
@@ -98,7 +98,7 @@ void Role::createActions(){
 	}
 	m_pActWalkLeft=RepeatForever::create(Animate::create(pAnim));
 	m_Actions.pushBack(m_pActWalkLeft);
-	//ÏÂ
+	//ä¸‹
 	pAnim = Animation::create( ) ;
 	pAnim->setDelayPerUnit( delayPerUnit ) ;
 	for ( int i = 0 ; i < 4 ; ++i )
@@ -108,7 +108,7 @@ void Role::createActions(){
 	}
 	m_pActWalkBottom = RepeatForever::create( Animate::create( pAnim ) ) ;
 	m_Actions.pushBack( m_pActWalkBottom ) ;
-	//ÉÏ
+	//ä¸Š
 	pAnim = Animation::create( ) ;
 	pAnim->setDelayPerUnit( delayPerUnit ) ;
 	for ( int i = 0 ; i < 4 ; ++i )

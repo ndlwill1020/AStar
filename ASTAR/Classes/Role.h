@@ -15,13 +15,13 @@ public:
 	enum State
 	{
 		None,
-		// оРвСвъ
+		// Е░▒Е╥╕Х╣╟
 		WalkLeft , 
-		// оРсрвъ
+		// Е░▒Е▐ЁХ╣╟
 		WalkRight , 
-		// оРиовъ
+		// Е░▒Д╦┼Х╣╟
 		WalkTop , 
-		// оРобвъ
+		// Е░▒Д╦▀Х╣╟
 		WalkBottom
 	};
 

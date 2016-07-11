@@ -32,7 +32,7 @@ private:
 
 	
 
-	// ×Ö·û´®±í
+	// å­—ç¬¦ä¸²è¡¨
 	unordered_map< string , string> m_StringList ;
 };
 

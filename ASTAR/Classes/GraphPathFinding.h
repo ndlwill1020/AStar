@@ -5,11 +5,11 @@
 using namespace std;
 
 /*
-	Â·¾¶ËÑË÷½á¹û
+	è·¯å¾„æœç´¢ç»“æœ
 */
 struct Result
 {
-	// Â·¾¶Ê÷
+	// è·¯å¾„æ ‘
 	unordered_map< Vertex* , Vertex* > PathTree ;
 };
 

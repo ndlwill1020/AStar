@@ -20,15 +20,15 @@ class LayerMapWalk : public Layer{
 	friend class MapWalkConfigManager;
 public:
 	enum OperationMode{
-		//  ·ÅÖÃ¶¥µã
+		//  æ”¾ç½®é¡¶ç‚¹
 		PutVertex , 
-		// ÍÏÒ·³¡¾°
+		// æ‹–æ›³åœºæ™¯
 		DragContent ,
-		// ÍÏÒ·±ß
+		// æ‹–æ›³è¾¹
 		DragEdge , 
-		// ·ÅÖÃ½ÇÉ«
+		// æ”¾ç½®è§’è‰²
 		PositionRole , 
-		// ĞĞ×ß
+		// è¡Œèµ°
 		RoleWalk , 
 	};
 
@@ -41,16 +41,16 @@ public:
 
 	void onTouchEnded( Touch *touch , Event *unused_event );
 
-	// ÅĞ¶ÏÊÇ·ñÃüÖĞ¶¥µã
-	// ·µ»ØÃüÖĞµÄ¶¥µãµÄÖ¸Õë¡£Ã»ÃüÖĞ£¬·µ»Ø0
+	// åˆ¤æ–­æ˜¯å¦å‘½ä¸­é¡¶ç‚¹
+	// è¿”å›å‘½ä¸­çš„é¡¶ç‚¹çš„æŒ‡é’ˆã€‚æ²¡å‘½ä¸­ï¼Œè¿”å›0
 	MapWalkVertex* HitMapWalkVertex( const Vec2& pos )  ; 
 
-	// Ìí¼ÓÒ»¸ö¶¥µã
+	// æ·»åŠ ä¸€ä¸ªé¡¶ç‚¹
 	void AddVertex( MapWalkVertex* pMwv , const char * pszId = 0 ) ;
-	// Ìí¼ÓÒ»Ìõ±ß
+	// æ·»åŠ ä¸€æ¡è¾¹
 	void AddEdge( MapWalkVertex* pMwv1 , MapWalkVertex* pMwv2 ) ; 
 
-	// ´´½¨Ò»Ìõ¾«ÁéÖ±Ïß
+	// åˆ›å»ºä¸€æ¡ç²¾çµç›´çº¿
 	static void MakeLine( Sprite* pSpr , const Point& pt1 , const Point& pt2 );
 
 	LayerHudControl * m_LayerHudControl; 
@@ -69,23 +69,23 @@ private:
 	Role* m_pRole ; 
 
 	
-	// µØÍ¼ĞĞ×ßµÄ½ÚµãÁĞ±í
+	// åœ°å›¾è¡Œèµ°çš„èŠ‚ç‚¹åˆ—è¡¨
 	vector< MapWalkVertex* > m_MapWalkVertexes ; 
-	// µØÍ¼ĞĞ×ßµÄ±ßµÄ¾«Áé
+	// åœ°å›¾è¡Œèµ°çš„è¾¹çš„ç²¾çµ
 	vector< Sprite* > m_Lines ; 
 
-	// Í¼½ÚµãID·ÖÅä±í
+	// å›¾èŠ‚ç‚¹IDåˆ†é…è¡¨
 	unordered_map< string , int > m_VertexIdTable ; 
 
-	// µØÍ¼±à¼­ËùÓÃµÄÁÙÊ±Êı¾İ
+	// åœ°å›¾ç¼–è¾‘æ‰€ç”¨çš„ä¸´æ—¶æ•°æ®
 	struct  EditData
 	{
-		MapWalkVertex * pMwv ; //¿ªÊ¼µã
+		MapWalkVertex * pMwv ; //å¼€å§‹ç‚¹
 
-		// ±à¼­Ïß¶Î
+		// ç¼–è¾‘çº¿æ®µ
 		Sprite * pSprEdgeLine ; 
 
-		// ÍÏ¶¯Æ«ÒÆÏòÁ¿ drag_content
+		// æ‹–åŠ¨åç§»å‘é‡ drag_content
 		Point ptDrag ;
 	} m_EditData ;
 };

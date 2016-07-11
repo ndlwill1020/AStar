@@ -5,13 +5,13 @@ Graph::Graph(){
 }
 
 Graph::~Graph(){
-	// ÊÍ·ÅËùÓĞ¶¥µã
+	// é‡Šæ”¾æ‰€æœ‰é¡¶ç‚¹
 	for ( auto& kv : m_Vertexes )
 	{
 		delete kv.second ; 
 	}
 
-	// ÊÍ·ÅËùÓĞµÄ±ß
+	// é‡Šæ”¾æ‰€æœ‰çš„è¾¹
 	for ( auto& kv : m_Edges )
 	{
 		delete kv.second ; 
@@ -20,10 +20,10 @@ Graph::~Graph(){
 
 	
 
-//ÒÑÀí½â
+//å·²ç†è§£
 void Graph::AddVertex( Vertex* pV ){
-	//if(m_Vertexes.find(pV->GetId())!=m_Vertexes.end){//ÕÒµ½ÁË
-	//	// ÒÑ¾­´æÔÚÏàÍ¬KeyµÄ¶¥µã
+	//if(m_Vertexes.find(pV->GetId())!=m_Vertexes.end){//æ‰¾åˆ°äº†
+	//	// å·²ç»å­˜åœ¨ç›¸åŒKeyçš„é¡¶ç‚¹
 	//}
 
 	m_Vertexes[pV->GetId()]=pV;
@@ -37,22 +37,22 @@ void Graph::AddVertex( Vertex* pV ){
   mymap.erase ("France");             // erasing by key
   mymap.erase ( mymap.find("China"), mymap.end() ); // erasing by range
 */
-//ÏÈÉ¾³ıÓëÕâµãÓĞ¹ØµÄ±ß ÔÙÉ¾³ıËü
-//ÎÒ¾õµÃ»¹´æÔÚbug================================================================================graphµÄ±ß¼¯ºÏÉÙÉ¾ÁË±ß Õâ¸öµãµÄÈë±ß¼¯ºÏÉÙÊÍ·ÅÁËÄÚ´æµÈµÈÎÊÌâ
+//å…ˆåˆ é™¤ä¸è¿™ç‚¹æœ‰å…³çš„è¾¹ å†åˆ é™¤å®ƒ
+//æˆ‘è§‰å¾—è¿˜å­˜åœ¨bug================================================================================graphçš„è¾¹é›†åˆå°‘åˆ äº†è¾¹ è¿™ä¸ªç‚¹çš„å…¥è¾¹é›†åˆå°‘é‡Šæ”¾äº†å†…å­˜ç­‰ç­‰é—®é¢˜
 void Graph::DeleleVertex( const string& VertexName ){
-	Vertex* pV=m_Vertexes.find(VertexName)->second;//µÃµ½keyÎª²ÎÊıÃûµÄVertex
+	Vertex* pV=m_Vertexes.find(VertexName)->second;//å¾—åˆ°keyä¸ºå‚æ•°åçš„Vertex
 
-	// ±éÀúÒªÉ¾³ıµÄ½ÚµãµÄ³ö±ß
-	//±éÀúÕâ¸öVertexµÄ³ö±ß¼¯ºÏ
+	// éå†è¦åˆ é™¤çš„èŠ‚ç‚¹çš„å‡ºè¾¹
+	//éå†è¿™ä¸ªVertexçš„å‡ºè¾¹é›†åˆ
 	for(auto it=pV->m_EdgesOut.begin(),end=pV->m_EdgesOut.end();it!=end;it++){
-		Edge* pEdgeOut=it->second;//³ö±ß
-		// É¾³ıÈë±ß¼ÇÂ¼
-		pEdgeOut->m_pEndVertex->m_EdgesIn.erase( VertexName ) ;//ÁíÒ»¸öµãµÄÈë±ß
-		// ÔÚ±ß¼¯ºÏÁĞ±íÖĞÉ¾³ı
+		Edge* pEdgeOut=it->second;//å‡ºè¾¹
+		// åˆ é™¤å…¥è¾¹è®°å½•
+		pEdgeOut->m_pEndVertex->m_EdgesIn.erase( VertexName ) ;//å¦ä¸€ä¸ªç‚¹çš„å…¥è¾¹
+		// åœ¨è¾¹é›†åˆåˆ—è¡¨ä¸­åˆ é™¤
 		string key=GetEdgeKey(pV,pEdgeOut->m_pEndVertex);
 		m_Edges.erase(key);
-		// É¾³ı±ß¶ÔÏó
-		delete pEdgeOut;//É¾³ıÈë±ßµÄedge¾ÍĞĞ ÒòÎªÁíÒ»¸öµãµÄÈë±ßÒ²ÊÇÕâÌõ±ß ÊÇÍ¬Ò»¿éÄÚ´æ É¾³ıÒ»¸ö¾ÍĞĞÁË
+		// åˆ é™¤è¾¹å¯¹è±¡
+		delete pEdgeOut;//åˆ é™¤å…¥è¾¹çš„edgeå°±è¡Œ å› ä¸ºå¦ä¸€ä¸ªç‚¹çš„å…¥è¾¹ä¹Ÿæ˜¯è¿™æ¡è¾¹ æ˜¯åŒä¸€å—å†…å­˜ åˆ é™¤ä¸€ä¸ªå°±è¡Œäº†
 	}
 
 	delete pV;
@@ -60,20 +60,20 @@ void Graph::DeleleVertex( const string& VertexName ){
 }
 
 
-//µ¥ÏòµÄ Ç°ÕßÎªstartµã  ÒÑÀí½â
-//Ç°Õß¼ÓÈëv1µÄ³ö±ß¼¯ºÏ ºóÕß¼ÓÈëv2µÄÈë±ß¼¯ºÏ
+//å•å‘çš„ å‰è€…ä¸ºstartç‚¹  å·²ç†è§£
+//å‰è€…åŠ å…¥v1çš„å‡ºè¾¹é›†åˆ åè€…åŠ å…¥v2çš„å…¥è¾¹é›†åˆ
 Edge* Graph::AddEdge( const string& Vertex1Name , const string& Vertex2Name , int Weight) {
-	Vertex* pV1=m_Vertexes.find(Vertex1Name)->second;//Vertexs¼¯ºÏÀïÕÒµ½keyÎª²ÎÊıµÄ Vertex
+	Vertex* pV1=m_Vertexes.find(Vertex1Name)->second;//Vertexsé›†åˆé‡Œæ‰¾åˆ°keyä¸ºå‚æ•°çš„ Vertex
 	Vertex* pV2=m_Vertexes.find(Vertex2Name)->second;
 
-	// ¼ÓÈë±ß¼¯ºÏ ¼ÓÈëµ½graphµÄedges
+	// åŠ å…¥è¾¹é›†åˆ åŠ å…¥åˆ°graphçš„edges
 	Edge *pEdge = new Edge( pV1 , pV2 , Weight ) ;
-	string key=GetEdgeKey(pV1,pV2);//±ßµÄkey
+	string key=GetEdgeKey(pV1,pV2);//è¾¹çš„key
 	m_Edges[key]=pEdge;
 
-	// ¼ÓÈëV1µÄ³ö±ß
-	pV1->m_EdgesOut[ Vertex2Name ] = pEdge ;//pv1µãµÄ³ö±ß¼¯ºÏ ËüµÄkeyÊÇ±ßµÄÁíÒ»¸öµãµÄid
-	// ¼ÓÈëV2µÄÈë±ß
+	// åŠ å…¥V1çš„å‡ºè¾¹
+	pV1->m_EdgesOut[ Vertex2Name ] = pEdge ;//pv1ç‚¹çš„å‡ºè¾¹é›†åˆ å®ƒçš„keyæ˜¯è¾¹çš„å¦ä¸€ä¸ªç‚¹çš„id
+	// åŠ å…¥V2çš„å…¥è¾¹
 	pV2->m_EdgesIn[ Vertex1Name ] = pEdge ;
 
 
@@ -84,7 +84,7 @@ Edge* Graph::AddEdge( const string& Vertex1Name , const string& Vertex2Name , in
 	return pV1->m_strId+"->"+pV2->m_strId;
 }*/
 
-//ÕâÖ»ÊÇµ¥ÏòµÄ ½»»»Á½¸ö²ÎÊı É¾³ıÁíÒ»Ìõ±ß
+//è¿™åªæ˜¯å•å‘çš„ äº¤æ¢ä¸¤ä¸ªå‚æ•° åˆ é™¤å¦ä¸€æ¡è¾¹
 void Graph::DeleteEdge( const string& StartVertexName , const string& EndVertexName ){
 	Vertex *pV1 = m_Vertexes.find( StartVertexName )->second ;
 	Vertex *pV2 = m_Vertexes.find( EndVertexName )->second ;
@@ -93,12 +93,12 @@ void Graph::DeleteEdge( const string& StartVertexName , const string& EndVertexN
 
 	Edge *pEdge = m_Edges.find( key )->second ;
 
-	// ÔÚ¶¥µã1µÄ³ö±ßÁĞ±íÖĞÉ¾³ı
+	// åœ¨é¡¶ç‚¹1çš„å‡ºè¾¹åˆ—è¡¨ä¸­åˆ é™¤
 	pV1->m_EdgesOut.erase( EndVertexName ) ; 
-	// ÔÚ¶¥µã2µÄÈë±ßÁĞ±íÖĞÉ¾³ı
+	// åœ¨é¡¶ç‚¹2çš„å…¥è¾¹åˆ—è¡¨ä¸­åˆ é™¤
 	pV2->m_EdgesIn.erase( StartVertexName ) ;
 
-	// ÔÚ±ß¼¯ºÏÁĞ±íÖĞÉ¾³ı
+	// åœ¨è¾¹é›†åˆåˆ—è¡¨ä¸­åˆ é™¤
 	m_Edges.erase( key ) ; 
 
 	delete pEdge;
